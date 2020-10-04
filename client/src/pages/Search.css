@@ -1,0 +1,22 @@
+.searchDiv {
+  display: flex;
+}
+
+.searchDiv > input {
+  border-radius: 20px;
+  border: 2px solid rgba(0, 255, 242, 0.5);
+}
+
+.searchDiv > Button {
+  margin-left: 10px;
+  border-radius: 20px;
+  background-color: rgba(0, 255, 242, 0.2);
+  color: rgb(49, 49, 49);
+  border: 1px solid rgb(49, 49, 49, 0);
+}
+
+.searchDiv > Button:hover {
+  background-color: rgba(0, 255, 242, 0.5);
+  color: black;
+  border: 1px solid rgb(112, 112, 112, 0.5);
+}
