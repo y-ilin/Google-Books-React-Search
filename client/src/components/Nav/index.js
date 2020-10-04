@@ -1,18 +1,21 @@
 import React from "react";
+import "./style.css";
 
 function Nav() {
   return (
-    <div>
-      <a href="/">
-        Google Books
-      </a>
-      <a href="/search">
+    <>
+      <nav>
+        <a href="/">
+          Google Books
+        </a>
+        <a href="/search">
         Search
-      </a>
-      <a href="/saved">
+        </a>
+        <a href="/saved">
         Saved
-      </a>
-    </div>
+        </a>
+      </nav>
+    </>
   );
 }
 

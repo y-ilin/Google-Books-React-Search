@@ -1,0 +1,8 @@
+nav {
+  padding: 1vh 2vw;
+}
+
+nav > a {
+  margin-right: 2vw;
+  color: rgb(56, 56, 56);
+}
