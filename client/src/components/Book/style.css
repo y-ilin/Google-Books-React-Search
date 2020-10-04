@@ -1,0 +1,50 @@
+ul {
+  padding: 0;
+}
+
+li {
+  background-color: rgba(0, 255, 242, 0.2);
+  padding: 1vw 4vw;
+  border-radius: 30px;
+  list-style: none;
+  box-shadow: 0px 10px 15px -5px rgba(128, 128, 128, 0.356);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.bookButtons {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+
+.bookButtons > Button,
+.bookButtons > a {
+  font-size: 0.8em;
+  margin: 2px;
+  border-radius: 20px;
+  background-color: rgba(207, 207, 207, 0.979);
+  color: rgb(37, 49, 47);
+  border: 1px solid rgb(184, 184, 184);
+  box-shadow: 0px 5px 5px -5px rgba(128, 128, 128, 0.5);
+}
+
+.bookButtons > Button:hover,
+.bookButtons > a:hover {
+  background-color: rgba(0, 255, 242, 0.5);
+  color: black;
+  border: 1px solid rgb(112, 112, 112, 0.5);
+}
+
+.title {
+  font-weight: bold;
+}
+
+.bookImgDesc {
+  display: flex;
+  font-size: 0.9em;
+}
+
+.bookImgDesc > img {
+  margin-right: 10px;
+}
