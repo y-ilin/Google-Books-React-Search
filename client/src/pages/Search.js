@@ -16,7 +16,6 @@ function Search() {
 
     // Handles updating component state when the user types into the input field
     function handleInputChange(event) {
-        console.log(event.target.value)
         setFormObject(event.target.value);
     };
 
@@ -28,24 +27,27 @@ function Search() {
         const queryParams = formObject;
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${queryParams}`)
             .then(res => {
-                console.log(res.data.items)
                 setSearchList(res.data.items)
             })
             .then(() => setFormObject(""))
             .catch(err => console.log(err))
         }
-
     };
 
     const saveBook = bookData => {
+        const title = bookData.title ? bookData.title : "";
+        const authors = bookData.authors ? bookData.authors : "Unknown";
+        const description = bookData.description ? bookData.description : "";
+        const image = bookData.imageLinks.smallThumbnail ? bookData.imageLinks.smallThumbnail : "https://via.placeholder.com/128x166.png";
+        const infoLink = bookData.infoLink ? bookData.infoLink : "";
+
         API.saveBook({
-            title: bookData.title,
-            authors: bookData.authors,
-            description: bookData.description,
-            image: bookData.imageLinks.smallThumbnail,
-            link: bookData.infoLink
+            title: title,
+            authors: authors,
+            description: description,
+            image: image,
+            link: infoLink
         });
-        console.log("saving book")
     }
 
     const loadSearchList = () => {
@@ -54,7 +56,7 @@ function Search() {
                 <Book 
                     title={book.volumeInfo.title}
                     authors={book.volumeInfo.authors}
-                    image={book.volumeInfo.imageLinks.smallThumbnail}
+                    image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : "https://via.placeholder.com/128x166.png"}
                     description={book.volumeInfo.description}
                     infoLink={book.volumeInfo.infoLink}
                     bookInfo={book.volumeInfo}
