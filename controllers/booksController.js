@@ -28,10 +28,15 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.Book
-      .findById({ id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+    db.Book.deleteOne({ _id: req.params.id }, (err, response) => {
+      if (err) {
+          console.log(err)
+      }
+    }).then(dbModel => res.json(dbModel))
+    // db.Book
+    //   .findById({ id: req.params.id })
+    //   .then(dbModel => dbModel.remove())
+    //   .then(dbModel => res.json(dbModel))
+    //   .catch(err => res.status(422).json(err));
   }
 };

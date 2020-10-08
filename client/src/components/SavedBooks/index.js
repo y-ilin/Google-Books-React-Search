@@ -27,7 +27,6 @@ function SavedBooks() {
 
   // Deletes a book from the database with a given id, then reloads books from the db
   function deleteBook(id) {
-    console.log("deleting book with id: ", id)
     API.deleteBook(id)
       .then(res => loadBooks())
       .catch(err => console.log(err));
@@ -45,7 +44,7 @@ function SavedBooks() {
                 authors={book.authors}
                 image={book.image}
                 description={book.description}
-                infoLink={book.infoLink}
+                infoLink={book.link}
                 bookInfo={book}
                 deleteBook={deleteBook}
                 // id={book._id}
