@@ -27,6 +27,7 @@ function Search() {
         const queryParams = formObject;
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${queryParams}`)
             .then(res => {
+                console.log(res.data.items)
                 setSearchList(res.data.items)
             })
             .then(() => setFormObject(""))
@@ -35,13 +36,15 @@ function Search() {
     };
 
     const saveBook = bookData => {
-        const title = bookData.title ? bookData.title : "";
-        const authors = bookData.authors ? bookData.authors : "Unknown";
-        const description = bookData.description ? bookData.description : "";
-        const image = bookData.imageLinks.smallThumbnail ? bookData.imageLinks.smallThumbnail : "https://via.placeholder.com/128x166.png";
-        const infoLink = bookData.infoLink ? bookData.infoLink : "";
+        // const id = bookData.id;
+        const title = bookData.volumeInfo.title ? bookData.volumeInfo.title : "";
+        const authors = bookData.volumeInfo.authors ? bookData.volumeInfo.authors : "Unknown";
+        const description = bookData.volumeInfo.description ? bookData.volumeInfo.description : "";
+        const image = bookData.volumeInfo.imageLinks.smallThumbnail ? bookData.volumeInfo.imageLinks.smallThumbnail : "https://via.placeholder.com/128x166.png";
+        const infoLink = bookData.volumeInfo.infoLink ? bookData.volumeInfo.infoLink : "";
 
         API.saveBook({
+            // bookid: id,
             title: title,
             authors: authors,
             description: description,
@@ -54,12 +57,14 @@ function Search() {
         return searchList.map(book => {
             return (
                 <Book 
+                    key={book.id}
+                    id={book.id}
                     title={book.volumeInfo.title}
                     authors={book.volumeInfo.authors}
                     image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : "https://via.placeholder.com/128x166.png"}
                     description={book.volumeInfo.description}
                     infoLink={book.volumeInfo.infoLink}
-                    bookInfo={book.volumeInfo}
+                    bookInfo={book}
                     saveBook={saveBook}
                 />
             )

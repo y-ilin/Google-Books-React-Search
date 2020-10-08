@@ -18,14 +18,16 @@ function SavedBooks() {
   // Loads all books and sets them to books
   function loadBooks() {
     API.getBooks()
-      .then(res => 
+      .then(res => {
+        console.log(res.data)
         setBooks(res.data)
-      )
+      })
       .catch(err => console.log(err));
   };
 
   // Deletes a book from the database with a given id, then reloads books from the db
   function deleteBook(id) {
+    console.log("deleting book with id: ", id)
     API.deleteBook(id)
       .then(res => loadBooks())
       .catch(err => console.log(err));
@@ -37,6 +39,8 @@ function SavedBooks() {
         <ul>
           {books.map(book => (
             <Book 
+                key={book._id}
+                id={book._id}
                 title={book.title}
                 authors={book.authors}
                 image={book.image}
@@ -44,17 +48,8 @@ function SavedBooks() {
                 infoLink={book.infoLink}
                 bookInfo={book}
                 deleteBook={deleteBook}
-                id={book._id}
-            />            // <li>
-            //     <p className="title">{book.title}</p>
-            //     <p className="authors">{book.authors.join(", ")}</p>
-            //     <div>
-            //         <img src={book.image} alt="book cover thumbnail" />
-            //         <p className="description">{book.description}</p>
-            //     </div>
-            //     <Button href={book.link} target="blank" variant="primary">View</Button>
-            //     <Button onClick={() => deleteBook(book._id)}>Delete</Button>
-            // </li>
+                // id={book._id}
+            />
           ))}
         </ul>
       ) : (

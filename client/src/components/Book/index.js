@@ -15,7 +15,7 @@ function Book(props) {
             <Button href={props.infoLink} target="blank" variant="primary">View</Button>
             {props.saveBook ? 
                 <Button onClick={() => props.saveBook(props.bookInfo)}>Save</Button> :
-                <Button onClick={() => props.deleteBook(props.book._id)}>Delete</Button>
+                <Button onClick={() => props.deleteBook(props.id)}>Delete</Button>
                     }
             {/* <Button onClick={() => props.saveBook(props.bookInfo)}>Save</Button> */}
         </div>
